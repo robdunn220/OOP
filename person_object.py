@@ -7,15 +7,15 @@ class Person(object):
     def greet(self, other_person):
         print 'Hello %s, I am %s' % (other_person.name, self.name)
 
+    def print_contact_info(self):
+        print "%s's email: %s, %s's phone number: %s" %(self.name, self.email, self.name, self.phone)
+
 sonny = Person('Sonny', 'sonny@hotmail.com', '483-485-4948')
 jordan = Person('Jordan', 'jordan@aol.com', '495-586-3456')
 
 sonny.greet(jordan)
 
-print 'Name: %s' % sonny.name
-print 'Email: %s' % sonny.email
-print '\n'
+sonny.print_contact_info()
 
 jordan.greet(sonny)
-print 'Name: %s' % jordan.name
-print 'Email: %s' % jordan.email
+jordan.print_contact_info()
