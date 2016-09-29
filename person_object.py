@@ -6,7 +6,7 @@ class Person(object):
         self.friends = []
         self.greeting_count = greeting_count
         self.greet_list = []
-        self.num_of_people_greeted = 1
+        self.num_of_people_greeted = num_of_people_greeted
 
     def __repr__(self):
         return "%s" % (self.name)
@@ -18,12 +18,16 @@ class Person(object):
 
     def num_unique_people_greeted(self):
         y = 0
-        for x in self.greet_list:
-            if x == self.greet_list[y + 1]:
-                y += 1
-                pass
-            else:
-                self.num_of_people_greeted += 1
+        if not self.greet_list:
+            pass
+        else:
+            for x in self.greet_list:
+                if x == self.greet_list[y + 1]:
+                    y += 1
+                    pass
+                else:
+                    self.num_of_people_greeted += 1
+            self.num_of_people_greeted += 1
         print self.num_of_people_greeted
 
     def print_contact_info(self):
@@ -38,15 +42,23 @@ class Person(object):
     def num_friends(self):
         print "%s has %d friends" % (self.name, len(self.friends))
 
-sonny = Person('Sonny', 'sonny@hotmail.com', '483-485-4948', '', 0, '', 1)
-jordan = Person('Jordan', 'jordan@aol.com', '495-586-3456', '', 0, '', 1)
-john = Person('John', 'papajohns@inthehouse.com', '404-983-PZZA', '', 0, '', 1)
+sonny = Person('Sonny', 'sonny@hotmail.com', '483-485-4948', '', 0, '', 0)
+jordan = Person('Jordan', 'jordan@aol.com', '495-586-3456', '', 0, '', 0)
+john = Person('John', 'papajohns@inthehouse.com', '404-983-PZZA', '', 0, '', 0)
+rob = Person('Rob', 'rob@inthehouse.com', '404-983-4492', '', 0, '', 0)
 
 sonny.add_friend(jordan)
 sonny.add_friend(john)
+sonny.add_friend(rob)
 
 sonny.greet(jordan)
 sonny.greet(john)
 sonny.greet(jordan)
 sonny.greet(jordan)
-print sonny.num_unique_people_greeted()
+sonny.greet(john)
+sonny.greet(rob)
+sonny.greet(rob)
+sonny.greet(john)
+sonny.num_unique_people_greeted()
+
+jordan.num_unique_people_greeted()
