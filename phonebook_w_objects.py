@@ -1,37 +1,35 @@
-class Phonebook(object):
-    def __init__(self, Contact):
-        self.Contact = {}
+import pickle
 
-    def print_info(self):
-        print "Name: %s" % self.name
-        print "Phone number: %s" % self.phone
-        print "Address: %s" % self.address
-        print "\n"
-
-    def print_contacts(self):
-        for p in self.Contacts:
-            print p
-
-class Contact(Phonebook):
-    def __init__(self, name, address, phone):
-        super(Contact, self).__init__(self.name)
+class Contact:
+    def __init__(self, name, address, work, cell):
         self.name = name
-        self.address =  address
-        self.phone = phone
+        self.address = address
+        self.work = work
+        self.cell = cell
 
-    def add_contact(self):
-        self.Contact.append()
+class Phonebook:
+    def __init__(self, filename):
+        self.filename = filename
+        self.store = {}
+        self.load()
 
-rob = Contact('Rob', '14 Stuff', '404-983-3392')
+    def load(self):
+        my_file = open('phonebook.pickle', 'r')
+        self.filename = pickle.load(my_file)
 
-ben = Contact('Ben', '20 Lane Place Ave. NWE', '414-993-3492')
+    def save(self):
+        with open(self.filename) as f:
+            pickle.dump(self.store, f)
 
-rob.print_info()
-ben.print_info()
+    def get(self, name):
+        if name in self.store:
+            return self.store[name]
+        return None
 
-new_name = raw_input('Please type a name to create a contact: ')
-new_address = raw_input('Address: ')
-new_number = raw_input('Number: ')
-new_name = Contact(new_name, new_address, new_number)
+    def add(self, person):
+        self.store[comtact.getName()] = contacts
+        self.save()
 
-new_name.print_info()
+
+rob = Contact('Rob', '20 T Place', '404', '678')
+Phonebook.get('Rob')
